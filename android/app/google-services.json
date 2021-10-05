@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "55873209412",
+    "project_id": "nisqbank-8b529",
+    "storage_bucket": "nisqbank-8b529.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:55873209412:android:00bb3dde9473e2e388a811",
+        "android_client_info": {
+          "package_name": "com.radiology.nis_q_bank"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "55873209412-lreo1fp0jc8h7ua8hf2h60hfiro15qkt.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.radiology.nis_q_bank",
+            "certificate_hash": "c4fde3c830dc7acfbac354adb67a35b30141599d"
+          }
+        },
+        {
+          "client_id": "55873209412-5d96b83ek68i0hbe16ab2p467o60dtbq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDluIALwjzPmkdkb8gkOJkViDIUHxxOaIs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "55873209412-5d96b83ek68i0hbe16ab2p467o60dtbq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
