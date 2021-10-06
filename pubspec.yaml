@@ -18,6 +18,9 @@ dependencies:
     sdk: flutter
 
   firebase_database: ^8.0.0
+  flutter_screenutil: ^5.0.0+2
+  cached_network_image: ^3.1.0
+  path_provider: ^2.0.5
 
 dev_dependencies:
   flutter_test:
@@ -34,3 +37,24 @@ flutter:
   assets:
     # Add assets from the images directory to the application.
     - assets/images/
+
+  fonts:
+    - family: HelveticaNeue
+      fonts:
+        - asset: assets/fonts/HelveticaNeue-Black.otf
+        - asset: assets/fonts/HelveticaNeue-Bold.otf
+        - asset: assets/fonts/HelveticaNeue-BoldItalic.otf
+        - asset: assets/fonts/HelveticaNeue-CondensedBlack.otf
+        - asset: assets/fonts/HelveticaNeue-CondensedBold.otf
+        - asset: assets/fonts/HelveticaNeue-CondensedLight.otf
+        - asset: assets/fonts/HelveticaNeue-CondensedMedium.otf
+        - asset: assets/fonts/HelveticaNeue-CondensedRegular.otf
+        - asset: assets/fonts/HelveticaNeue-CondensedThin.otf
+        - asset: assets/fonts/HelveticaNeue-Light.otf
+        - asset: assets/fonts/HelveticaNeue-LightItalic.otf
+        - asset: assets/fonts/HelveticaNeue-Medium.otf
+        - asset: assets/fonts/HelveticaNeue-Regular.otf
+        - asset: assets/fonts/HelveticaNeue-Thin.otf
+        - asset: assets/fonts/HelveticaNeue-ThinItalic.otf
+        - asset: assets/fonts/HelveticaNeue-UltraLight.otf
+        - asset: assets/fonts/HelveticaNeue-UltraLightItalic.otf
