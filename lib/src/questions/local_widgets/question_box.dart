@@ -7,10 +7,13 @@ import 'package:nis_q_bank/src/theme/colors.dart';
 class QuestionBox extends StatelessWidget {
   final int? questNum;
   final AnswerType? answerType;
+  final BorderStyle? borderStyle;
+
   QuestionBox({
     Key? key,
     this.questNum = 0,
     this.answerType = AnswerType.UnAnswered,
+    this.borderStyle = BorderStyle.solid,
   }) : super(key: key);
 
   late Color _bckgroundColor;
@@ -39,6 +42,11 @@ class QuestionBox extends StatelessWidget {
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(7.r),
           color: _bckgroundColor,
+          border: Border.all(
+            color: CustomColors.iconColor,
+            width: 0.8,
+            style: borderStyle!,
+          ),
           boxShadow: [
             BoxShadow(
               offset: Offset(0, 3.h),
