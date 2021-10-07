@@ -3,6 +3,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:nis_q_bank/logic/data/models/test_model.dart';
 import 'package:nis_q_bank/src/theme/Colors.dart';
 
+import 'local_widgets/controller_row.dart';
+import 'local_widgets/questions_grid_view.dart';
 import 'local_widgets/test_widget.dart';
 
 class QuestionScreen extends StatelessWidget {
@@ -54,8 +56,13 @@ class QuestionScreen extends StatelessWidget {
                         "https://drive.google.com/uc?export=view&id=1DJCVjxjDKSqHPODa0N7vRHTXzzxDOHZW",
                   ),
                 ),
+                SizedBox(height: 10.h),
                 // Open / Close question and move next
+                const ControllerRow(),
+                SizedBox(height: 15.h),
                 // Questions list widget
+                const QuestionsGridView(),
+                SizedBox(height: 15.h),
               ],
             ),
           ),
