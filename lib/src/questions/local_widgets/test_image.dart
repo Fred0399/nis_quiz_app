@@ -13,7 +13,6 @@ class TestImage extends StatelessWidget {
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(4.r),
       ),
-      padding: EdgeInsets.all(5.r),
       child: ClipRRect(
         borderRadius: BorderRadius.circular(4.r),
         // child: Image(image: CachedNetworkImageProvider(imageURL!)),
@@ -22,10 +21,12 @@ class TestImage extends StatelessWidget {
           fadeInDuration: const Duration(milliseconds: 300),
           fit: BoxFit.cover,
           alignment: Alignment.center,
-          progressIndicatorBuilder: (context, url, downloadProgress) =>
-              CircularProgressIndicator(
-            value: downloadProgress.progress,
-            strokeWidth: 3.0,
+          progressIndicatorBuilder: (context, url, downloadProgress) => Padding(
+            padding: EdgeInsets.all(5.r),
+            child: CircularProgressIndicator(
+              value: downloadProgress.progress,
+              strokeWidth: 3.0,
+            ),
           ),
           errorWidget: (ctxx, msg, dyn) => Text(
             "Oops..\nError in loading image \n $msg",

@@ -51,7 +51,9 @@ class TopicsScreen extends StatelessWidget {
                                 )..add(const QuestionSelect(index: 0)),
                                 child: BlocProvider<AnswerSelectCubit>(
                                   create: (context) => AnswerSelectCubit(),
-                                  child: const QuestionScreen(),
+                                  child: QuestionScreen(
+                                    topicName: state.topics[ind].topicName!,
+                                  ),
                                 ),
                               ),
                             ),

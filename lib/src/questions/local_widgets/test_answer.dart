@@ -60,7 +60,7 @@ class AnswerWidget extends StatelessWidget {
         child: RichText(
           overflow: TextOverflow.ellipsis,
           softWrap: false,
-          maxLines: 30,
+          maxLines: 100,
           textAlign: TextAlign.left,
           text: TextSpan(
             style: TextStyle(

@@ -9,7 +9,9 @@ import 'local_widgets/questions_grid_view.dart';
 import 'local_widgets/test_widget.dart';
 
 class QuestionScreen extends StatelessWidget {
-  const QuestionScreen({Key? key}) : super(key: key);
+  final String topicName;
+  const QuestionScreen({Key? key, this.topicName = "NIS Qbank"})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -23,9 +25,7 @@ class QuestionScreen extends StatelessWidget {
           ),
           onPressed: Navigator.of(context).pop,
         ),
-        title: const Text(
-          "NIS Qbank",
-        ),
+        title: Text(topicName),
       ),
       body: NotificationListener<OverscrollIndicatorNotification>(
         onNotification: (overscroll) {

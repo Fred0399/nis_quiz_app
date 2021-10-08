@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:equatable/equatable.dart';
 import 'package:meta/meta.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -21,10 +23,13 @@ class TopicsCubitCubit extends Cubit<TopicsCubitState> {
     emit(TopicsLoading());
 
     List<TopicModel> _topics = [];
+
     try {
       DataSnapshot dataSnapshot = await databaseRef.once();
 
       final LinkedHashMap _hMap = dataSnapshot.value;
+
+      List<TestModel> _randomQuestions = [];
 
       _hMap.forEach((key, value) {
         List<TestModel> _questions = [];
@@ -36,11 +41,24 @@ class TopicsCubitCubit extends Cubit<TopicsCubitState> {
           }
         }
 
-        late TopicModel _yp =
-            TopicModel(key, key, _questions.length, _questions);
+        // choose 1 element from each topic being random based
+        if (_questions.isNotEmpty) {
+          int _rand = Random().nextInt(_questions.length);
+          _randomQuestions.add(_questions[_rand]);
+        }
 
-        _topics.add(_yp);
+        _topics.add(TopicModel(key, key, _questions.length, _questions));
       });
+
+      // Generating a random Topic
+      _topics.add(
+        TopicModel(
+          "Random",
+          "Random",
+          _randomQuestions.length,
+          _randomQuestions,
+        ),
+      );
 
       emit(TopicsSuccess(_topics));
     } catch (e) {
