@@ -2,8 +2,6 @@
 //
 //     final testModel = testModelFromJson(jsonString);
 
-import 'dart:convert';
-
 import 'package:equatable/equatable.dart';
 
 // TestModel testModelFromJson(String str) => TestModel.fromJson(json.decode(str));
@@ -18,14 +16,15 @@ List<TestModel> testModelFromJson(List<dynamic> str) => List<TestModel>.from(
       ),
     );
 
-String testModelToJson(List<TestModel> data) => json.encode(
-      List<dynamic>.from(
-        data.map(
-          (x) => x == null ? null : x.toJson(),
-        ),
-      ),
-    );
+// String testModelToJson(List<TestModel> data) => json.encode(
+//       List<dynamic>.from(
+//         data.map(
+//           (x) => x == null ? null : x.toJson(),
+//         ),
+//       ),
+//     );
 
+// ignore: must_be_immutable
 class TestModel extends Equatable {
   TestModel({
     this.a = '',

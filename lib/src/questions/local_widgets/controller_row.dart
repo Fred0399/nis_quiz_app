@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:nis_q_bank/logic/bloc/question_list_bloc/question_list_bloc_bloc.dart';
 import 'package:nis_q_bank/src/theme/colors.dart';
-import 'package:provider/src/provider.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'quest_num_nav.dart';
 

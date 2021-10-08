@@ -7,7 +7,7 @@ part 'answer_select_state.dart';
 class AnswerSelectCubit extends Cubit<AnswerSelectState> {
   AnswerSelectCubit() : super(AnswerSelectInitial());
 
-  Map<int, Map<String, AnswerType>> _answers = {};
+  final Map<int, Map<String, AnswerType>> _answers = {};
 
   void setTestState(int? questIndx) {
     emit(AnswerSelectInitial());
@@ -36,14 +36,4 @@ class AnswerSelectCubit extends Cubit<AnswerSelectState> {
 
     emit(AnswerSelectSucc(_tmpMap));
   }
-}
-
-class AnsweredModel extends Equatable {
-  final String? givenAnswer;
-  final String? corrAnswer;
-
-  const AnsweredModel(this.givenAnswer, this.corrAnswer);
-
-  @override
-  List<Object?> get props => throw UnimplementedError();
 }

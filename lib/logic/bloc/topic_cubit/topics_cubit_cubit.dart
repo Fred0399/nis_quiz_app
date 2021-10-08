@@ -14,6 +14,7 @@ class TopicsCubitCubit extends Cubit<TopicsCubitState> {
   TopicsCubitCubit() : super(TopicsCubitInitial());
 
   final databaseRef = FirebaseDatabase.instance.reference();
+  // ignore: unused_field
   final Future<FirebaseApp> _future = Firebase.initializeApp();
 
   void fetchTopics() async {
@@ -43,7 +44,6 @@ class TopicsCubitCubit extends Cubit<TopicsCubitState> {
 
       emit(TopicsSuccess(_topics));
     } catch (e) {
-      print(e);
       emit(TopicsError("Error occured in data fetch, please refresh"));
     }
   }

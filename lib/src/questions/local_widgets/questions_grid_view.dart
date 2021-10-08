@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:nis_q_bank/logic/bloc/question_list_bloc/question_list_bloc_bloc.dart';
-import 'package:nis_q_bank/src/enums/answer_type.dart';
 
 import 'question_box.dart';
 
