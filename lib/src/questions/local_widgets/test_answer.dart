@@ -1,12 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:nis_q_bank/logic/bloc/answer_cubit/answer_select_cubit.dart';
+import 'package:nis_q_bank/logic/bloc/question_list_bloc/question_list_bloc_bloc.dart';
 import 'package:nis_q_bank/src/enums/answer_type.dart';
 import 'package:nis_q_bank/src/theme/Colors.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class AnswerWidget extends StatelessWidget {
   final String? corrAns;
   final String? ansVariant;
   final String? answerDesc;
+  final String? corrAnsDesc;
+  final int? indx;
   final AnswerType? answerType;
 
   AnswerWidget({
@@ -14,6 +19,8 @@ class AnswerWidget extends StatelessWidget {
     this.corrAns = "",
     this.ansVariant = "",
     this.answerDesc = "",
+    this.corrAnsDesc,
+    required this.indx,
     this.answerType = AnswerType.UnAnswered,
   }) : super(key: key);
 
@@ -29,7 +36,14 @@ class AnswerWidget extends StatelessWidget {
       _bckgroundColor = CustomColors.answerBackgroundColor;
     }
     return InkWell(
-      onTap: () {},
+      onTap: () {
+        context.read<AnswerSelectCubit>().selectAnswer(
+              index: indx,
+              selectedOpt: ansVariant,
+              correctOpt: corrAns,
+            );
+        context.read<QuestionListBlocBloc>().answerCheck(ansVariant == corrAns);
+      },
       child: Container(
         width: double.infinity,
         constraints: BoxConstraints(minHeight: 35.h),
@@ -44,7 +58,7 @@ class AnswerWidget extends StatelessWidget {
         child: RichText(
           overflow: TextOverflow.ellipsis,
           softWrap: false,
-          maxLines: 20,
+          maxLines: 30,
           textAlign: TextAlign.left,
           text: TextSpan(
             style: TextStyle(
@@ -56,9 +70,19 @@ class AnswerWidget extends StatelessWidget {
             children: [
               TextSpan(
                 text: "${ansVariant!.toUpperCase()}. ",
-                style: const TextStyle(fontWeight: FontWeight.bold),
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 13.sp),
               ),
               TextSpan(text: answerDesc!),
+              if (answerType == AnswerType.Correct) ...[
+                TextSpan(
+                  text: "\n\nExplanation: ",
+                  style:
+                      TextStyle(fontWeight: FontWeight.bold, fontSize: 13.sp),
+                ),
+                TextSpan(
+                  text: corrAnsDesc,
+                )
+              ]
             ],
           ),
         ),

@@ -13,6 +13,7 @@ class TestImage extends StatelessWidget {
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(4.r),
       ),
+      padding: EdgeInsets.all(5.r),
       child: ClipRRect(
         borderRadius: BorderRadius.circular(4.r),
         // child: Image(image: CachedNetworkImageProvider(imageURL!)),
