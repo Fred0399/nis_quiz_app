@@ -71,7 +71,7 @@ class MyApp extends StatelessWidget {
                 builder: (BuildContext context) {
                   return BlocProvider<TopicsCubitCubit>(
                     create: (context) => TopicsCubitCubit()..fetchTopics(),
-                    child: const TopicsScreen(),
+                    child: TopicsScreen(),
                   );
                 },
               );

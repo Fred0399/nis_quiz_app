@@ -21,9 +21,9 @@ class CustomTheme {
           fontFamily: "HelveticaNeue",
         ),
         actionsIconTheme: IconThemeData(
-          color: CustomColors.appBarLeadingIconColor,
+          color: CustomColors.appBarTextColor,
           opacity: 1,
-          size: 25.r,
+          size: 26.r,
         ),
         iconTheme: IconThemeData(
           color: CustomColors.appBarLeadingIconColor,

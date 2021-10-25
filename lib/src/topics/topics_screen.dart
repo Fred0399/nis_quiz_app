@@ -5,11 +5,13 @@ import 'package:nis_q_bank/logic/bloc/answer_cubit/answer_select_cubit.dart';
 import 'package:nis_q_bank/logic/bloc/question_list_bloc/question_list_bloc_bloc.dart';
 import 'package:nis_q_bank/logic/bloc/topic_cubit/topics_cubit_cubit.dart';
 import 'package:nis_q_bank/src/questions/question_screen.dart';
+import 'package:nis_q_bank/src/topics/local_widgets/appbar_action_icon.dart';
 import 'package:nis_q_bank/src/topics/local_widgets/topic.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import '../dialog/contact_us.dart';
 
 class TopicsScreen extends StatelessWidget {
-  const TopicsScreen({Key? key}) : super(key: key);
+  TopicsScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -18,6 +20,18 @@ class TopicsScreen extends StatelessWidget {
         title: const Text(
           "NIS Qbank",
         ),
+        actions: [
+          AppBarActionIcon(
+              icon: Icons.mail_outline_rounded,
+              onPressed: () {
+                openContactDialog(context);
+              }),
+          AppBarActionIcon(
+              icon: Icons.info_outline_rounded,
+              onPressed: () {
+                openAboutDialog(context);
+              }),
+        ],
       ),
       body: NotificationListener<OverscrollIndicatorNotification>(
         onNotification: (overscroll) {

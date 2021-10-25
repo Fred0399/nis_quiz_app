@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:nis_q_bank/logic/bloc/question_list_bloc/question_list_bloc_bloc.dart';
+import 'package:nis_q_bank/src/dialog/contact_us.dart';
 import 'package:nis_q_bank/src/theme/Colors.dart';
+import 'package:nis_q_bank/src/topics/local_widgets/appbar_action_icon.dart';
 
 import 'local_widgets/controller_row.dart';
 import 'local_widgets/questions_grid_view.dart';
@@ -25,6 +27,13 @@ class QuestionScreen extends StatelessWidget {
           ),
           onPressed: Navigator.of(context).pop,
         ),
+        actions: [
+          AppBarActionIcon(
+              icon: Icons.mail_outline_rounded,
+              onPressed: () {
+                openContactDialog(context);
+              }),
+        ],
         title: Text(topicName),
       ),
       body: NotificationListener<OverscrollIndicatorNotification>(
