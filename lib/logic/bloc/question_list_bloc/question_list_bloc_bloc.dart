@@ -20,6 +20,8 @@ class QuestionListBlocBloc
 
   AnswerType getAnswerType(int ind) => questAnswers[ind];
 
+  String? getQuestDesc(int ind) => _questionList[ind]!.desc;
+
   void answerCheck(bool isCorr) {
     // if already answered then do nothing
     if (questAnswers[_lastQuestInd!] != AnswerType.UnAnswered) return;

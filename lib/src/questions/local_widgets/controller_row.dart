@@ -25,7 +25,7 @@ class ControllerRow extends StatelessWidget {
             splashColor: Colors.transparent,
             highlightColor: Colors.transparent,
             child: Text(
-              "Questions",
+              "Show all questions",
               style: TextStyle(
                 height: 1.6.h,
                 fontSize: 13.sp,
@@ -34,7 +34,8 @@ class ControllerRow extends StatelessWidget {
               ),
             ),
             onTap: () {
-              // open questions list
+              // open questions list in drawer
+              Scaffold.of(context).openDrawer();
             },
           ),
           Row(

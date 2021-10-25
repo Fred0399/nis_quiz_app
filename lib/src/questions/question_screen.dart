@@ -3,11 +3,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:nis_q_bank/logic/bloc/question_list_bloc/question_list_bloc_bloc.dart';
 import 'package:nis_q_bank/src/dialog/custom_dialog.dart';
-import 'package:nis_q_bank/src/theme/Colors.dart';
+import 'package:nis_q_bank/src/theme/colors.dart';
 import 'package:nis_q_bank/src/topics/local_widgets/appbar_action_icon.dart';
 
 import 'local_widgets/controller_row.dart';
-import 'local_widgets/questions_grid_view.dart';
+import 'local_widgets/questions_list_view.dart';
 import 'local_widgets/test_widget.dart';
 
 class QuestionScreen extends StatelessWidget {
@@ -18,6 +18,28 @@ class QuestionScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawerEnableOpenDragGesture: false,
+      drawer: Drawer(
+        child: ColoredBox(
+          color: CustomColors.bckgrndColor,
+          child: Padding(
+            padding: EdgeInsets.only(top: 50.h),
+            child: Column(
+              children: [
+                Text(
+                  "Questions list",
+                  style: TextStyle(
+                    fontSize: 19.sp,
+                    fontWeight: FontWeight.w500,
+                    color: CustomColors.topicNameColor,
+                  ),
+                ),
+                const QuestionsListView()
+              ],
+            ),
+          ),
+        ),
+      ),
       appBar: AppBar(
         leading: IconButton(
           icon: Icon(
@@ -64,8 +86,8 @@ class QuestionScreen extends StatelessWidget {
                 const ControllerRow(),
                 SizedBox(height: 15.h),
                 // Questions list widget
-                const QuestionsGridView(),
-                SizedBox(height: 15.h),
+                // const QuestionsGridView(),
+                // SizedBox(height: 15.h),
               ],
             ),
           ),
