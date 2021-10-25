@@ -8,7 +8,7 @@ import 'package:nis_q_bank/src/questions/question_screen.dart';
 import 'package:nis_q_bank/src/topics/local_widgets/appbar_action_icon.dart';
 import 'package:nis_q_bank/src/topics/local_widgets/topic.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import '../dialog/contact_us.dart';
+import '../dialog/custom_dialog.dart';
 
 class TopicsScreen extends StatelessWidget {
   TopicsScreen({Key? key}) : super(key: key);

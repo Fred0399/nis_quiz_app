@@ -18,10 +18,15 @@ class QuestionListBlocInitial extends QuestionListBlocState {
 
 class QuestionSelectedSuccess extends QuestionListBlocState {
   final int? index;
+  final int? questListLength;
   final TestModel? testModel;
 
-  const QuestionSelectedSuccess({required this.index, required this.testModel});
+  const QuestionSelectedSuccess({
+    required this.index,
+    required this.testModel,
+    required this.questListLength,
+  });
 
   @override
-  List<Object> get props => [index!, testModel!];
+  List<Object> get props => [index!, testModel!, questListLength!];
 }

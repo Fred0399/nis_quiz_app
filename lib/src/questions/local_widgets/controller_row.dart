@@ -5,6 +5,7 @@ import 'package:nis_q_bank/src/theme/colors.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'quest_num_nav.dart';
+import 'show_scores.dart';
 
 class ControllerRow extends StatelessWidget {
   const ControllerRow({Key? key}) : super(key: key);
@@ -47,12 +48,22 @@ class ControllerRow extends StatelessWidget {
                 },
               ),
               SizedBox(width: 13.w),
-              QuestionNumNav(
-                isPrev: false,
-                onTap: () {
-                  context
-                      .read<QuestionListBlocBloc>()
-                      .add(NextQuestionSelect());
+              BlocBuilder<QuestionListBlocBloc, QuestionListBlocState>(
+                builder: (BuildContext context, blocState) {
+                  if (blocState is QuestionSelectedSuccess) {
+                    // reached to the latest question of set
+                    if (blocState.index == blocState.questListLength! - 1) {
+                      return ShowScore();
+                    }
+                  }
+                  return QuestionNumNav(
+                    isPrev: false,
+                    onTap: () {
+                      context
+                          .read<QuestionListBlocBloc>()
+                          .add(NextQuestionSelect());
+                    },
+                  );
                 },
               ),
             ],

@@ -1,14 +1,18 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:nis_q_bank/logic/bloc/question_list_bloc/question_list_bloc_bloc.dart';
+import 'package:nis_q_bank/logic/data/models/score_model.dart';
 import 'package:nis_q_bank/src/dialog/local_widgets/unordered_text_item.dart';
 import 'package:nis_q_bank/src/theme/colors.dart';
+import 'package:provider/src/provider.dart';
+import 'package:pie_chart/pie_chart.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 // opening About dialog
 void openAboutDialog(BuildContext context) {
-  ContactUs.showAlertCustom(
+  CustomDialog.showAlertCustom(
     context,
     title: "About",
     onPressed: Navigator.of(context).pop,
@@ -66,7 +70,7 @@ void openContactDialog(BuildContext context) {
     );
   }
 
-  ContactUs.showAlertCustom(
+  CustomDialog.showAlertCustom(
     context,
     title: "Contact",
     onPressed: _copyEmail,
@@ -98,7 +102,139 @@ void openContactDialog(BuildContext context) {
   );
 }
 
-class ContactUs {
+// open scores dialog
+void openScoreDialog(BuildContext context) {
+  ScoreModel _scoreModel =
+      context.read<QuestionListBlocBloc>().calculateScore();
+
+  CustomDialog.showAlertCustom(
+    context,
+    title: "Your score",
+    onPressed: Navigator.of(context).pop,
+    btnText: "CLOSE",
+    content: [
+      RichText(
+        textAlign: TextAlign.left,
+        text: TextSpan(
+          text: "Total questions: ${_scoreModel.getTotal}",
+          style: TextStyle(
+            fontSize: 16.sp,
+            fontWeight: FontWeight.w600,
+            color: CustomColors.topicNameColor,
+          ),
+        ),
+      ),
+      RichText(
+        textAlign: TextAlign.left,
+        text: TextSpan(
+          text: "Answered correct: ",
+          style: TextStyle(
+            fontSize: 16.sp,
+            fontWeight: FontWeight.w400,
+            color: CustomColors.topicNameColor,
+          ),
+          children: [
+            TextSpan(
+              text: "${_scoreModel.correct}",
+              style: TextStyle(
+                fontSize: 16.sp,
+                fontWeight: FontWeight.w500,
+                color: CustomColors.correctAnswerBCKColor,
+              ),
+            ),
+          ],
+        ),
+      ),
+      RichText(
+        textAlign: TextAlign.left,
+        text: TextSpan(
+          text: "Answered wrong: ",
+          style: TextStyle(
+            fontSize: 16.sp,
+            fontWeight: FontWeight.w400,
+            color: CustomColors.topicNameColor,
+          ),
+          children: [
+            TextSpan(
+              text: "${_scoreModel.wrong}",
+              style: TextStyle(
+                fontSize: 16.sp,
+                fontWeight: FontWeight.w500,
+                color: CustomColors.wrongAnswerBCKColor,
+              ),
+            ),
+          ],
+        ),
+      ),
+      RichText(
+        textAlign: TextAlign.left,
+        text: TextSpan(
+          text: "Unanswered: ",
+          style: TextStyle(
+            fontSize: 16.sp,
+            fontWeight: FontWeight.w400,
+            color: CustomColors.topicNameColor,
+          ),
+          children: [
+            TextSpan(
+              text: "${_scoreModel.unanswered}",
+              style: TextStyle(
+                fontSize: 16.sp,
+                fontWeight: FontWeight.w500,
+                color: CustomColors.topicNameColor,
+              ),
+            ),
+          ],
+        ),
+      ),
+      SizedBox(height: 15.h),
+      PieChart(
+        dataMap: {
+          "Correct": (_scoreModel.correct! * 100 / _scoreModel.getTotal),
+          "Wrong": (_scoreModel.wrong! * 100 / _scoreModel.getTotal),
+          "Unanswered": (_scoreModel.unanswered! * 100 / _scoreModel.getTotal),
+        },
+        animationDuration: const Duration(milliseconds: 700),
+        chartLegendSpacing: 32,
+        chartRadius: MediaQuery.of(context).size.width / 2.8,
+        colorList: const [
+          CustomColors.correctAnswerBCKColor,
+          CustomColors.wrongAnswerBCKColor,
+          CustomColors.topicNameColor,
+        ],
+        initialAngleInDegree: 0,
+        chartType: ChartType.disc,
+        ringStrokeWidth: 5,
+        legendOptions: LegendOptions(
+          showLegendsInRow: false,
+          legendPosition: LegendPosition.bottom,
+          showLegends: true,
+          legendShape: BoxShape.circle,
+          legendTextStyle: TextStyle(
+            fontSize: 15.sp,
+            fontWeight: FontWeight.w600,
+            color: CustomColors.topicNameColor,
+          ),
+        ),
+        chartValuesOptions: ChartValuesOptions(
+          showChartValueBackground: true,
+          showChartValues: true,
+          showChartValuesInPercentage: true,
+          showChartValuesOutside: false,
+          decimalPlaces: 1,
+          chartValueBackgroundColor: Colors.black45,
+          chartValueStyle: TextStyle(
+            fontSize: 15.sp,
+            fontWeight: FontWeight.w500,
+            color: CustomColors.appBarTextColor,
+          ),
+        ),
+      )
+    ],
+  );
+}
+
+class CustomDialog {
   static var alertStyle = AlertStyle(
     animationType: AnimationType.grow,
     //isOverlayTapDismiss: true,

@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:nis_q_bank/logic/data/models/score_model.dart';
 import 'package:nis_q_bank/logic/data/models/test_model.dart';
 import 'package:nis_q_bank/src/enums/answer_type.dart';
 
@@ -24,6 +25,28 @@ class QuestionListBlocBloc
         isCorr ? AnswerType.Correct : AnswerType.Wrong;
   }
 
+  ScoreModel calculateScore() {
+    int _wrongCount = 0;
+    int _corrCount = 0;
+    int _unAnsCount = 0;
+
+    for (int i = 0; i < _questAnswers.length; i++) {
+      if (_questAnswers[i] == AnswerType.Wrong) {
+        _wrongCount += 1;
+      } else if (_questAnswers[i] == AnswerType.Correct) {
+        _corrCount += 1;
+      } else {
+        _unAnsCount += 1;
+      }
+    }
+
+    return ScoreModel(
+      wrong: _wrongCount,
+      correct: _corrCount,
+      unanswered: _unAnsCount,
+    );
+  }
+
   QuestionListBlocBloc(this._questionList)
       : super(QuestionListBlocInitial(_questionList)) {
     for (var i = 0; i < _questionList.length; i++) {
@@ -42,6 +65,7 @@ class QuestionListBlocBloc
       yield QuestionSelectedSuccess(
         index: event.index,
         testModel: _questionList[event.index!],
+        questListLength: _questionList.length,
       );
       _lastQuestInd = event.index;
     } else if (event is NextQuestionSelect) {
@@ -52,6 +76,7 @@ class QuestionListBlocBloc
       yield QuestionSelectedSuccess(
         index: _lastQuestInd,
         testModel: _questionList[_lastQuestInd!],
+        questListLength: _questionList.length,
       );
     } else if (event is PreviousQuestionSelect) {
       // reached the first question
@@ -61,6 +86,7 @@ class QuestionListBlocBloc
       yield QuestionSelectedSuccess(
         index: _lastQuestInd,
         testModel: _questionList[_lastQuestInd!],
+        questListLength: _questionList.length,
       );
     }
   }
