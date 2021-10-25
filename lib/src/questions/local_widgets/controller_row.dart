@@ -53,7 +53,7 @@ class ControllerRow extends StatelessWidget {
                   if (blocState is QuestionSelectedSuccess) {
                     // reached to the latest question of set
                     if (blocState.index == blocState.questListLength! - 1) {
-                      return ShowScore();
+                      return const ShowScore();
                     }
                   }
                   return QuestionNumNav(

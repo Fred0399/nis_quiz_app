@@ -21,6 +21,9 @@ class QuestionListBlocBloc
   AnswerType getAnswerType(int ind) => questAnswers[ind];
 
   void answerCheck(bool isCorr) {
+    // if already answered then do nothing
+    if (questAnswers[_lastQuestInd!] != AnswerType.UnAnswered) return;
+
     questAnswers[_lastQuestInd!] =
         isCorr ? AnswerType.Correct : AnswerType.Wrong;
   }
