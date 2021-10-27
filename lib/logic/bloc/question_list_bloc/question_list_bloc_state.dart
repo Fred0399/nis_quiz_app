@@ -30,3 +30,8 @@ class QuestionSelectedSuccess extends QuestionListBlocState {
   @override
   List<Object> get props => [index!, testModel!, questListLength!];
 }
+
+class NoQuestion extends QuestionListBlocState {
+  @override
+  List<Object> get props => [];
+}

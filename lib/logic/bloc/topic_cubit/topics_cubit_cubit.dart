@@ -19,8 +19,10 @@ class TopicsCubitCubit extends Cubit<TopicsCubitState> {
   // ignore: unused_field
   final Future<FirebaseApp> _future = Firebase.initializeApp();
 
-  void fetchTopics() async {
-    emit(TopicsLoading());
+  void fetchTopics([bool showLoading = true]) async {
+    if (showLoading) {
+      emit(TopicsLoading());
+    }
 
     List<TopicModel> _topics = [];
 

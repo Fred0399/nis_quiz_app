@@ -10,11 +10,18 @@ import 'local_widgets/controller_row.dart';
 import 'local_widgets/questions_list_view.dart';
 import 'local_widgets/test_widget.dart';
 
-class QuestionScreen extends StatelessWidget {
+class QuestionScreen extends StatefulWidget {
   final String topicName;
-  const QuestionScreen({Key? key, this.topicName = "NIS Qbank"})
+  final bool? isFavScreen;
+  const QuestionScreen(
+      {Key? key, this.topicName = "NIS Qbank", this.isFavScreen = false})
       : super(key: key);
 
+  @override
+  State<QuestionScreen> createState() => _QuestionScreenState();
+}
+
+class _QuestionScreenState extends State<QuestionScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,18 +31,20 @@ class QuestionScreen extends StatelessWidget {
           color: CustomColors.bckgrndColor,
           child: Padding(
             padding: EdgeInsets.only(top: 50.h),
-            child: Column(
-              children: [
-                Text(
-                  "Questions list",
-                  style: TextStyle(
-                    fontSize: 19.sp,
-                    fontWeight: FontWeight.w500,
-                    color: CustomColors.topicNameColor,
+            child: SingleChildScrollView(
+              child: Column(
+                children: [
+                  Text(
+                    "Questions list",
+                    style: TextStyle(
+                      fontSize: 19.sp,
+                      fontWeight: FontWeight.w500,
+                      color: CustomColors.topicNameColor,
+                    ),
                   ),
-                ),
-                const QuestionsListView()
-              ],
+                  const QuestionsListView()
+                ],
+              ),
             ),
           ),
         ),
@@ -56,7 +65,7 @@ class QuestionScreen extends StatelessWidget {
                 openContactDialog(context);
               }),
         ],
-        title: Text(topicName),
+        title: Text(widget.topicName),
       ),
       body: NotificationListener<OverscrollIndicatorNotification>(
         onNotification: (overscroll) {
@@ -75,6 +84,20 @@ class QuestionScreen extends StatelessWidget {
                       return Test(
                         questNumb: blocState.index! + 1,
                         testData: blocState.testModel,
+                        isInFavScreen: widget.isFavScreen,
+                      );
+                    } else if (blocState is NoQuestion) {
+                      return Align(
+                        alignment: Alignment.topCenter,
+                        child: Text(
+                          "No questions favorited",
+                          style: TextStyle(
+                            height: 1.6.h,
+                            fontSize: 13.sp,
+                            fontWeight: FontWeight.bold,
+                            color: CustomColors.topicNameColor,
+                          ),
+                        ),
                       );
                     }
                     return const SizedBox();

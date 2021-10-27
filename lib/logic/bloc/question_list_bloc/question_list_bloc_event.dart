@@ -17,3 +17,5 @@ class QuestionSelect extends QuestionListBlocEvent {
 class NextQuestionSelect extends QuestionListBlocEvent {}
 
 class PreviousQuestionSelect extends QuestionListBlocEvent {}
+
+class CurrentQuestionSelect extends QuestionListBlocEvent {}

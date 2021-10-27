@@ -6,7 +6,7 @@ import 'package:nis_q_bank/src/theme/colors.dart';
 
 class UnorderedListItem extends StatelessWidget {
   final String? text;
-  UnorderedListItem(this.text);
+  UnorderedListItem(this.text, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

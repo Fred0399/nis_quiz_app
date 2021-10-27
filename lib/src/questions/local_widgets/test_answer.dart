@@ -13,7 +13,7 @@ class AnswerWidget extends StatelessWidget {
   final String? ansVariant;
   final String? answerDesc;
   final String? corrAnsDesc;
-  final int? indx;
+  final int? id;
   final AnswerType? answerType;
 
   AnswerWidget({
@@ -22,7 +22,7 @@ class AnswerWidget extends StatelessWidget {
     this.ansVariant = "",
     this.answerDesc = "",
     this.corrAnsDesc,
-    required this.indx,
+    required this.id,
     this.answerType = AnswerType.UnAnswered,
   }) : super(key: key);
 
@@ -40,7 +40,7 @@ class AnswerWidget extends StatelessWidget {
     return InkWell(
       onTap: () {
         context.read<AnswerSelectCubit>().selectAnswer(
-              index: indx,
+              id: id,
               selectedOpt: ansVariant,
               correctOpt: corrAns,
             );

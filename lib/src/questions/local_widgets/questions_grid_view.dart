@@ -15,7 +15,7 @@ class QuestionsGridView extends StatelessWidget {
       child: BlocBuilder<QuestionListBlocBloc, QuestionListBlocState>(
         builder: (context, state) {
           int _itmCount =
-              context.read<QuestionListBlocBloc>().questAnswers.length;
+              context.read<QuestionListBlocBloc>().questionsList.length;
           int? _selectedInd;
 
           if (state is QuestionSelectedSuccess) {

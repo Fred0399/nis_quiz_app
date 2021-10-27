@@ -3,7 +3,9 @@
 //     final testModel = testModelFromJson(jsonString);
 
 import 'package:equatable/equatable.dart';
-
+import 'package:hive_flutter/adapters.dart';
+import 'package:nis_q_bank/src/enums/answer_type.dart';
+part 'test_model.g.dart';
 // TestModel testModelFromJson(String str) => TestModel.fromJson(json.decode(str));
 
 // String testModelToJson(TestModel data) => json.encode(data.toJson());
@@ -23,9 +25,9 @@ List<TestModel> testModelFromJson(List<dynamic> str) => List<TestModel>.from(
 //         ),
 //       ),
 //     );
-
+@HiveType(typeId: 0)
 // ignore: must_be_immutable
-class TestModel extends Equatable {
+class TestModel extends HiveObject with EquatableMixin {
   TestModel({
     this.a = '',
     this.b = '',
@@ -39,16 +41,35 @@ class TestModel extends Equatable {
     this.imgUrl = '',
   });
 
+  @HiveField(0)
   String? a;
+  @HiveField(1)
   String? b;
+  @HiveField(2)
   String? c;
+  @HiveField(3)
   String? d;
+  @HiveField(4)
   String? e;
+  @HiveField(5)
   String? ansDesc;
+  @HiveField(6)
   String? corrAns;
+  @HiveField(7)
   String? desc;
+  @HiveField(8)
   int? id;
+  @HiveField(9)
   String? imgUrl;
+
+  @HiveField(10)
+  AnswerType _answerType = AnswerType.UnAnswered;
+
+  AnswerType get answerType => _answerType;
+
+  void setAnswerType(AnswerType ans) {
+    _answerType = ans;
+  }
 
   factory TestModel.fromJson(Map<String, dynamic> json) {
     String? imgURl = "";

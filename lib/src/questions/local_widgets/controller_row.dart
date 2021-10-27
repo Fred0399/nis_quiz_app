@@ -40,18 +40,25 @@ class ControllerRow extends StatelessWidget {
           ),
           Row(
             children: [
-              QuestionNumNav(
-                isPrev: true,
-                onTap: () {
-                  context
-                      .read<QuestionListBlocBloc>()
-                      .add(PreviousQuestionSelect());
+              BlocBuilder<QuestionListBlocBloc, QuestionListBlocState>(
+                builder: (BuildContext context, blocState) {
+                  if (blocState is NoQuestion) return const SizedBox();
+                  return QuestionNumNav(
+                    isPrev: true,
+                    onTap: () {
+                      context
+                          .read<QuestionListBlocBloc>()
+                          .add(PreviousQuestionSelect());
+                    },
+                  );
                 },
               ),
               SizedBox(width: 13.w),
               BlocBuilder<QuestionListBlocBloc, QuestionListBlocState>(
                 builder: (BuildContext context, blocState) {
-                  if (blocState is QuestionSelectedSuccess) {
+                  if (blocState is NoQuestion) {
+                    return const SizedBox();
+                  } else if (blocState is QuestionSelectedSuccess) {
                     // reached to the latest question of set
                     if (blocState.index == blocState.questListLength! - 1) {
                       return const ShowScore();

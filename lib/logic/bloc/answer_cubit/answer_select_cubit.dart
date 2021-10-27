@@ -9,16 +9,16 @@ class AnswerSelectCubit extends Cubit<AnswerSelectState> {
 
   final Map<int, Map<String, AnswerType>> _answers = {};
 
-  void setTestState(int? questIndx) {
+  void setTestState(int? questID) {
     emit(AnswerSelectInitial());
 
-    if (_answers.containsKey(questIndx)) {
-      emit(AnswerSelectSucc(_answers[questIndx]!));
+    if (_answers.containsKey(questID)) {
+      emit(AnswerSelectSucc(_answers[questID]!));
     }
   }
 
-  void selectAnswer({int? index, String? selectedOpt, String? correctOpt}) {
-    if (_answers.containsKey(index)) {
+  void selectAnswer({int? id, String? selectedOpt, String? correctOpt}) {
+    if (_answers.containsKey(id)) {
       return;
     }
 
@@ -32,7 +32,7 @@ class AnswerSelectCubit extends Cubit<AnswerSelectState> {
       _tmpMap.putIfAbsent(correctOpt!, () => AnswerType.Correct);
     }
 
-    _answers.putIfAbsent(index!, () => _tmpMap);
+    _answers.putIfAbsent(id!, () => _tmpMap);
 
     emit(AnswerSelectSucc(_tmpMap));
   }

@@ -15,7 +15,7 @@ class QuestionsListView extends StatelessWidget {
       child: BlocBuilder<QuestionListBlocBloc, QuestionListBlocState>(
         builder: (context, state) {
           int _itmCount =
-              context.read<QuestionListBlocBloc>().questAnswers.length;
+              context.read<QuestionListBlocBloc>().questionsList.length;
           int? _selectedInd;
 
           if (state is QuestionSelectedSuccess) {
@@ -29,12 +29,6 @@ class QuestionsListView extends StatelessWidget {
               primary: false,
               shrinkWrap: true,
               itemCount: _itmCount,
-
-              // gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              //   crossAxisCount: 7,
-              //   mainAxisSpacing: 10.w,
-              //   crossAxisSpacing: 10.h,
-              // ),
               itemBuilder: (ctxx, numm) {
                 return QuestionTile(
                   questNum: numm,
