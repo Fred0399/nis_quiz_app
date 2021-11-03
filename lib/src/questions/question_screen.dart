@@ -64,6 +64,11 @@ class _QuestionScreenState extends State<QuestionScreen> {
               onPressed: () {
                 openContactDialog(context);
               }),
+          AppBarActionIcon(
+              icon: Icons.info_outline_rounded,
+              onPressed: () {
+                openAboutDialog(context);
+              }),
         ],
         title: Text(widget.topicName),
       ),

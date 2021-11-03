@@ -19,19 +19,24 @@ class TopicsCubitCubit extends Cubit<TopicsCubitState> {
   // ignore: unused_field
   final Future<FirebaseApp> _future = Firebase.initializeApp();
 
+  // topics
+  List<TopicModel> _topics = [];
+  // store random questions
+  List<TestModel> _randomQuestions = [];
+
   void fetchTopics([bool showLoading = true]) async {
     if (showLoading) {
       emit(TopicsLoading());
     }
 
-    List<TopicModel> _topics = [];
+    // reset topics values
+    _topics.clear();
+    _randomQuestions.clear();
 
     try {
       DataSnapshot dataSnapshot = await databaseRef.once();
 
       final LinkedHashMap _hMap = dataSnapshot.value;
-
-      List<TestModel> _randomQuestions = [];
 
       _hMap.forEach((key, value) {
         List<TestModel> _questions = [];
@@ -59,6 +64,7 @@ class TopicsCubitCubit extends Cubit<TopicsCubitState> {
           "Random",
           _randomQuestions.length,
           _randomQuestions,
+          isRandom: true,
         ),
       );
 
@@ -66,5 +72,21 @@ class TopicsCubitCubit extends Cubit<TopicsCubitState> {
     } catch (e) {
       emit(TopicsError("Error occured in data fetch, please refresh"));
     }
+  }
+
+  List<TestModel> get getRandomQuestions {
+    //reset randoms list
+    _randomQuestions.clear();
+
+    // as the last topic itself is random
+    for (int i = 0; i < _topics.length - 1; i++) {
+      if (_topics[i].questionsList!.isNotEmpty) {
+        int _rand = Random().nextInt(_topics[i].questionsList!.length);
+        _randomQuestions.add(_topics[i].questionsList![_rand]);
+      }
+    }
+    _randomQuestions.shuffle();
+
+    return _randomQuestions;
   }
 }

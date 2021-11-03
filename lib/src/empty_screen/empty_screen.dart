@@ -27,6 +27,11 @@ class EmptyScreen extends StatelessWidget {
               onPressed: () {
                 openContactDialog(context);
               }),
+          AppBarActionIcon(
+              icon: Icons.info_outline_rounded,
+              onPressed: () {
+                openAboutDialog(context);
+              }),
         ],
         title: Text(topicName!),
       ),

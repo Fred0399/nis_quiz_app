@@ -119,7 +119,12 @@ class TopicsScreen extends StatelessWidget {
                               builder: (ctxx) =>
                                   BlocProvider<QuestionListBlocBloc>(
                                 create: (ctxxx) => QuestionListBlocBloc(
-                                  state.topics[ind].questionsList ?? [],
+                                  ((state.topics[ind].isRandom)
+                                          ? context
+                                              .read<TopicsCubitCubit>()
+                                              .getRandomQuestions
+                                          : state.topics[ind].questionsList) ??
+                                      [],
                                   checkIsFav: (questID) {
                                     // trigger fav bloc to check if a question was favved Before
                                     _favBloc.add(CheckIsFav(id: questID));

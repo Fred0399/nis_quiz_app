@@ -6,9 +6,11 @@ class TopicModel extends Equatable {
   final String? topicKey;
   final int? questCount;
   final List<TestModel>? _questionsList;
+  final bool isRandom;
 
   const TopicModel(
-      this.topicName, this.topicKey, this.questCount, this._questionsList);
+      this.topicName, this.topicKey, this.questCount, this._questionsList,
+      {this.isRandom = false});
 
   List<TestModel>? get questionsList => _questionsList;
 
